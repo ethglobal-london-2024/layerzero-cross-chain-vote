@@ -1,15 +1,15 @@
-import { EndpointId } from '@layerzerolabs/lz-definitions'
+import { MainnetV2EndpointId } from '@layerzerolabs/lz-definitions'
 
 const baseContract = {
-    eid: EndpointId.BASE_MAINNET,
-    contractName: 'SourceVoterOApp',
+    eid: MainnetV2EndpointId.BASE_V2_MAINNET,
+    // contractName: 'SourceVoterOApp',
     address: '0xCeeF0be32E21205b14a9ABa2A23A54248556D3a7',
 }
 
 const arbitrumContract = {
-    eid: EndpointId.ARBITRUM_MAINNET,
-    contractName: 'DestinationVoterOApp',
-    address: '0x6E4DeF79780469D19E052bC96D8eEd153E0B0477',
+    eid: MainnetV2EndpointId.ARBITRUM_V2_MAINNET,
+    // contractName: 'DestinationVoterOApp',
+    address: '0xCeeF0be32E21205b14a9ABa2A23A54248556D3a7',
 }
 
 export default {
@@ -26,27 +26,6 @@ export default {
             from: baseContract,
             to: arbitrumContract,
             config: {
-                // enforcedOptions: [
-                //     {
-                //         msgType: 1,
-                //         gas: 200000,
-                //         value: 0,
-                //     },
-                // ],
-            },
-        },
-
-        {
-            from: baseContract,
-            to: arbitrumContract,
-            config: {
-                // enforcedOptions: [
-                //     {
-                //         msgType: 1,
-                //         gas: 200000,
-                //         value: 0,
-                //     },
-                // ],
                 sendConfig: {
                     executorConfig: {
                         maxMessageSize: 99,

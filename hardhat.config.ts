@@ -12,7 +12,7 @@ import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
-import { EndpointId } from '@layerzerolabs/lz-definitions'
+import { MainnetV2EndpointId } from '@layerzerolabs/lz-definitions'
 
 // Set your preferred authentication method
 //
@@ -53,13 +53,13 @@ const config: HardhatUserConfig = {
     networks: {
         base: {
             chainId: 8453,
-            eid: EndpointId.BASE_MAINNET,
+            eid: MainnetV2EndpointId.BASE_V2_MAINNET,
             url: 'https://rpc.ankr.com/base',
             accounts,
         },
         arbitrumOne: {
             chainId: 42161,
-            eid: EndpointId.ARBITRUM_MAINNET,
+            eid: MainnetV2EndpointId.ARBITRUM_V2_MAINNET,
             url: 'https://rpc.ankr.com/arbitrum',
             accounts,
         },
