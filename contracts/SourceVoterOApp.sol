@@ -20,7 +20,7 @@ contract SourceVoterOApp is OAppSender {
      * @dev Encodes the message as bytes and sends it using the `_lzSend` internal function.
      * @return receipt A `MessagingReceipt` struct containing details of the message sent.
      */
-    function castVote(uint32 _dstEid, IEntryPoint.PackedUserOperation calldata _userOperation, bytes calldata _options)
+    function castVote(uint32 _dstEid, IEntryPoint.UserOperation calldata _userOperation, bytes calldata _options)
         external
         payable
         returns (MessagingReceipt memory receipt)
@@ -39,7 +39,7 @@ contract SourceVoterOApp is OAppSender {
      */
     function quote(
         uint32 _dstEid,
-        IEntryPoint.PackedUserOperation calldata _userOperation,
+        IEntryPoint.UserOperation calldata _userOperation,
         bytes memory _options,
         bool _payInLzToken
     ) public view returns (MessagingFee memory fee) {

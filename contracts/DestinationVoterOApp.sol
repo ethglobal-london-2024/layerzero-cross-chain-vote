@@ -41,7 +41,7 @@ contract DestinationVoterOApp is OAppReceiver {
         address, /*_executor*/
         bytes calldata /*_extraData*/
     ) internal override {
-        IEntryPoint.PackedUserOperation memory userOp = abi.decode(payload, (IEntryPoint.PackedUserOperation));
+        IEntryPoint.UserOperation memory userOp = abi.decode(payload, (IEntryPoint.UserOperation));
 
         bytes memory voteData = abi.encodeWithSelector(IEntryPoint.handleOps.selector, userOp, userOp.sender);
         (bool success,) = address(entryPoint).call(voteData);

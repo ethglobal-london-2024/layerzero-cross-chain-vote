@@ -71,8 +71,8 @@ const config: HardhatUserConfig = {
     },
     etherscan: {
         apiKey: {
-            base: process.env.BASESCAN_API_KEY || '',
-            arbitrumOne: process.env.ARBISCAN_API_KEY || '',
+            // base: process.env.BASESCAN_API_KEY || '',
+            arbitrumOne: '3BZWAMJ7UDQIPCWZT1MVYAW1Q1GVV4QX12',
         },
     },
 }
