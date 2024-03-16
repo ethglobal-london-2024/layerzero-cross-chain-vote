@@ -10,7 +10,7 @@ import {OAppReceiver} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppRec
 
 import {IEntryPoint} from "./interfaces/IEntryPoint.sol";
 
-contract DestintaionVoterOApp is OAppReceiver {
+contract DestinationVoterOApp is OAppReceiver {
     address entryPoint;
 
     event VoteSuccessful();
