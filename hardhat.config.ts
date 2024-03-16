@@ -6,6 +6,7 @@
 import 'dotenv/config'
 
 import 'hardhat-deploy'
+import '@nomicfoundation/hardhat-verify'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
@@ -48,13 +49,18 @@ const config: HardhatUserConfig = {
             },
         ],
     },
+    sourcify: {
+        enabled: true,
+    },
     networks: {
         base: {
+            chainId: 8453,
             eid: EndpointId.BASE_MAINNET,
             url: 'https://rpc.ankr.com/base',
             accounts,
         },
         arbitrum: {
+            chainId: 42161,
             eid: EndpointId.ARBITRUM_MAINNET,
             url: 'https://rpc.ankr.com/arbitrum',
             accounts,
@@ -63,6 +69,11 @@ const config: HardhatUserConfig = {
     namedAccounts: {
         deployer: {
             default: 0, // wallet address of index[0], of the mnemonic in .env
+        },
+    },
+    verify: {
+        etherscan: {
+            apiKey: 'process.env.BASESCAN_API_KEY',
         },
     },
 }

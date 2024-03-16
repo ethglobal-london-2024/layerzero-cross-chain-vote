@@ -7,7 +7,7 @@ const contractName = 'DestinationVoterOApp'
 
 const entryPoint = '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
 
-const deploy: DeployFunction = async (hre) => {
+const deployDestinationVoter: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre
 
     const { deploy } = deployments
@@ -50,6 +50,6 @@ const deploy: DeployFunction = async (hre) => {
     console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
 }
 
-deploy.tags = [contractName]
+deployDestinationVoter.tags = [contractName]
 
-export default deploy
+export default deployDestinationVoter

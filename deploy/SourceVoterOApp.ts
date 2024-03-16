@@ -5,7 +5,7 @@ import { type DeployFunction } from 'hardhat-deploy/types'
 // TODO declare your contract name here
 const contractName = 'SourceVoterOApp'
 
-const deploy: DeployFunction = async (hre) => {
+const deploySourceVoter: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre
 
     const { deploy } = deployments
@@ -47,6 +47,6 @@ const deploy: DeployFunction = async (hre) => {
     console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
 }
 
-deploy.tags = [contractName]
+deploySourceVoter.tags = [contractName]
 
-export default deploy
+export default deploySourceVoter
