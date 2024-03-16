@@ -49,19 +49,14 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
-        sepolia: {
-            eid: EndpointId.SEPOLIA_V2_TESTNET,
-            url: 'https://rpc.sepolia.org/',
+        base: {
+            eid: EndpointId.BASE_MAINNET,
+            url: 'https://rpc.ankr.com/base',
             accounts,
         },
-        fuji: {
-            eid: EndpointId.AVALANCHE_V2_TESTNET,
-            url: 'https://rpc.ankr.com/avalanche_fuji',
-            accounts,
-        },
-        mumbai: {
-            eid: EndpointId.POLYGON_V2_TESTNET,
-            url: 'https://rpc.ankr.com/polygon_mumbai',
+        arbitrum: {
+            eid: EndpointId.ARBITRUM_MAINNET,
+            url: 'https://rpc.ankr.com/arbitrum',
             accounts,
         },
     },
