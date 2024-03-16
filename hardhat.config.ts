@@ -49,9 +49,7 @@ const config: HardhatUserConfig = {
             },
         ],
     },
-    sourcify: {
-        enabled: true,
-    },
+
     networks: {
         base: {
             chainId: 8453,
@@ -59,7 +57,7 @@ const config: HardhatUserConfig = {
             url: 'https://rpc.ankr.com/base',
             accounts,
         },
-        arbitrum: {
+        arbitrumOne: {
             chainId: 42161,
             eid: EndpointId.ARBITRUM_MAINNET,
             url: 'https://rpc.ankr.com/arbitrum',
@@ -71,9 +69,10 @@ const config: HardhatUserConfig = {
             default: 0, // wallet address of index[0], of the mnemonic in .env
         },
     },
-    verify: {
-        etherscan: {
-            apiKey: 'process.env.BASESCAN_API_KEY',
+    etherscan: {
+        apiKey: {
+            base: process.env.BASESCAN_API_KEY || '',
+            arbitrumOne: process.env.ARBISCAN_API_KEY || '',
         },
     },
 }
