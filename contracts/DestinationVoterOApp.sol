@@ -2,23 +2,24 @@
 
 pragma solidity ^0.8.22;
 
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {MessagingFee, Origin} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
-import {OAppCore} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppCore.sol";
-import {MessagingReceipt} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppSender.sol";
-import {OAppReceiver} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppReceiver.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { MessagingFee, Origin } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
+import { OAppCore } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppCore.sol";
+import { MessagingReceipt } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppSender.sol";
+import { OAppReceiver } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppReceiver.sol";
 
-import {IEntryPoint} from "./interfaces/IEntryPoint.sol";
+import { IEntryPoint } from "./interfaces/IEntryPoint.sol";
 
 contract DestinationVoterOApp is OAppReceiver {
     address entryPoint;
 
     event VoteSuccessful();
 
-    constructor(address _endpoint, address _delegate, address _entryPoint)
-        OAppCore(_endpoint, _delegate)
-        Ownable(_delegate)
-    {
+    constructor(
+        address _endpoint,
+        address _delegate,
+        address _entryPoint
+    ) OAppCore(_endpoint, _delegate) Ownable(_delegate) {
         entryPoint = _entryPoint;
     }
 
@@ -35,17 +36,16 @@ contract DestinationVoterOApp is OAppReceiver {
      * Decodes the received payload and processes it as per the business logic defined in the function.
      */
     function _lzReceive(
-        Origin calldata, /*_origin*/
-        bytes32, /*_guid*/
+        Origin calldata /*_origin*/,
+        bytes32 /*_guid*/,
         bytes calldata payload,
-        address, /*_executor*/
+        address /*_executor*/,
         bytes calldata /*_extraData*/
     ) internal override {
         IEntryPoint.UserOperation memory userOp = abi.decode(payload, (IEntryPoint.UserOperation));
-
-        bytes memory voteData = abi.encodeWithSelector(IEntryPoint.handleOps.selector, userOp, userOp.sender);
-        (bool success,) = address(entryPoint).call(voteData);
-        require(success);
+        IEntryPoint.UserOperation[] memory userOpArr = new IEntryPoint.UserOperation[](1);
+        userOpArr[0] = userOp;
+        IEntryPoint(entryPoint).handleOps(userOpArr, payable(userOp.sender));
         emit VoteSuccessful();
     }
 }
